@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iryna Fetisova — Senior Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#11201C;
+    --surface:#182924;
+    --surface-2:#1F332D;
+    --text:#EDF1EC;
+    --text-muted:#8FA39A;
+    --accent:#E3A857;
+    --accent-2:#4FD1B0;
+    --line:rgba(237,241,236,0.09);
+    --radius:2px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:var(--accent-2);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  :focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;}
+
+  .wrap{max-width:960px;margin:0 auto;padding:0 32px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(17,32,28,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 32px;
+  }
+  .nav-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;letter-spacing:0.02em;}
+  .nav-links{display:flex;gap:28px;list-style:none;}
+  .nav-links a{color:var(--text-muted);font-size:13px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.02em;}
+  .nav-links a:hover{color:var(--text);text-decoration:none;}
+  @media (max-width:680px){.nav-links{display:none;}}
+
+  /* HERO */
+  .hero{padding:88px 0 64px;position:relative;overflow:hidden;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--accent-2);
+    font-size:13px;letter-spacing:0.08em;text-transform:uppercase;
+    margin-bottom:20px;display:inline-block;
+    border:1px solid rgba(79,209,176,0.3);
+    padding:5px 12px;border-radius:var(--radius);
+  }
+  .hero h1{font-size:clamp(38px,6vw,58px);line-height:1.05;margin-bottom:18px;}
+  .hero h1 span{color:var(--accent);}
+  .hero-sub{
+    font-size:18px;color:var(--text-muted);max-width:560px;margin-bottom:36px;
+  }
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:64px;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
+    padding:12px 20px;border-radius:var(--radius);
+    border:1px solid var(--line);transition:all .2s ease;
+  }
+  .btn-primary{background:var(--accent);color:#11201C;font-weight:500;border-color:var(--accent);}
+  .btn-primary:hover{background:#eeb668;text-decoration:none;}
+  .btn-ghost{color:var(--text);}
+  .btn-ghost:hover{border-color:var(--accent-2);color:var(--accent-2);text-decoration:none;}
+
+  /* FUNNEL SIGNATURE */
+  .funnel-block{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:36px 40px 30px;
+  }
+  .funnel-label{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text-muted);
+    text-transform:uppercase;letter-spacing:0.06em;margin-bottom:26px;
+  }
+  .funnel-stage{
+    margin:0 auto 14px;
+    background:linear-gradient(90deg, rgba(79,209,176,0.14), rgba(227,168,87,0.14));
+    border:1px solid rgba(79,209,176,0.25);
+    border-radius:2px;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 22px;
+    opacity:0;
+    animation:stageIn .6s ease forwards;
+  }
+  .funnel-stage:nth-child(1){width:100%;animation-delay:.1s;}
+  .funnel-stage:nth-child(2){width:84%;animation-delay:.3s;}
+  .funnel-stage:nth-child(3){width:68%;animation-delay:.5s;}
+  .funnel-stage:nth-child(4){width:54%;animation-delay:.7s;}
+  @keyframes stageIn{
+    from{opacity:0;transform:translateY(8px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .funnel-stage .name{font-size:14px;font-weight:500;}
+  .funnel-stage .metric{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent);white-space:nowrap;margin-left:16px;}
+  @media (prefers-reduced-motion: reduce){
+    .funnel-stage{animation:none;opacity:1;}
+  }
+  @media (max-width:600px){
+    .funnel-stage{width:100% !important;flex-direction:column;align-items:flex-start;gap:6px;}
+  }
+
+  /* SECTION BASE */
+  section{padding:72px 0;border-top:1px solid var(--line);}
+  .section-head{margin-bottom:42px;}
+  .section-tag{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent-2);
+    text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;
+  }
+  .section-head h2{font-size:clamp(26px,4vw,34px);}
+
+  /* PROFILE */
+  .profile-text{font-size:17px;color:var(--text-muted);max-width:680px;}
+  .profile-text strong{color:var(--text);font-weight:600;}
+
+  /* IMPACT GRID */
+  .impact-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:1px;background:var(--line);border:1px solid var(--line);
+  }
+  .impact-card{
+    background:var(--surface);padding:28px 24px;
+  }
+  .impact-num{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700;color:var(--accent);margin-bottom:8px;}
+  .impact-label{font-size:14px;color:var(--text-muted);}
+
+  /* EXPERIENCE / RELEASE LOG */
+  .release{
+    border:1px solid var(--line);border-radius:3px;margin-bottom:18px;
+    background:var(--surface);overflow:hidden;
+  }
+  .release-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 26px;flex-wrap:wrap;gap:10px;
+    border-bottom:1px solid var(--line);
+  }
+  .release-tag{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    background:var(--surface-2);color:var(--accent-2);
+    padding:4px 10px;border-radius:2px;
+  }
+  .release-role{font-size:17px;font-weight:600;}
+  .release-org{font-size:14px;color:var(--text-muted);}
+  .release-body{padding:22px 26px;}
+  .release-body ul{list-style:none;}
+  .release-body li{
+    position:relative;padding-left:18px;margin-bottom:10px;
+    font-size:15px;color:var(--text-muted);
+  }
+  .release-body li::before{
+    content:"→";position:absolute;left:0;color:var(--accent-2);font-family:'IBM Plex Mono',monospace;
+  }
+  .release-body li strong{color:var(--text);font-weight:500;}
+  .release.minor .release-body li{font-size:14.5px;}
+
+  /* AI SECTION */
+  .ai-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start;}
+  @media (max-width:760px){.ai-grid{grid-template-columns:1fr;}}
+  .ai-list{list-style:none;}
+  .ai-list li{
+    padding:16px 0;border-bottom:1px solid var(--line);
+    font-size:15px;color:var(--text-muted);
+  }
+  .ai-list li:last-child{border-bottom:none;}
+  .ai-list strong{color:var(--text);display:block;font-weight:500;margin-bottom:3px;}
+  .terminal{
+    background:#0D1815;border:1px solid var(--line);border-radius:4px;
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
+    padding:22px 24px;color:var(--accent-2);
+  }
+  .terminal .comment{color:var(--text-muted);}
+  .terminal .k{color:var(--accent);}
+  .terminal div{margin-bottom:6px;}
+
+  /* SKILLS */
+  .skill-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;}
+  .skill-group h3{
+    font-size:13px;text-transform:uppercase;letter-spacing:0.06em;
+    color:var(--accent-2);font-family:'IBM Plex Mono',monospace;font-weight:500;
+    margin-bottom:14px;
+  }
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-size:13px;padding:6px 12px;border:1px solid var(--line);
+    border-radius:20px;color:var(--text-muted);
+  }
+
+  /* BACKGROUND (education/lang/courses) */
+  .bg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:36px;}
+  .bg-col h3{
+    font-size:13px;text-transform:uppercase;letter-spacing:0.06em;
+    color:var(--accent-2);font-family:'IBM Plex Mono',monospace;font-weight:500;margin-bottom:14px;
+  }
+  .bg-col p, .bg-col li{color:var(--text-muted);font-size:14.5px;margin-bottom:8px;list-style:none;}
+  .bg-col li strong{color:var(--text);font-weight:500;}
+  .lang-bar{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden;margin-top:4px;width:100%;}
+  .lang-bar span{display:block;height:100%;background:var(--accent-2);}
+
+  /* FOOTER */
+  footer{padding:64px 0 48px;text-align:center;}
+  footer .display{font-size:24px;margin-bottom:14px;}
+  .contact-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--text-muted);margin-bottom:8px;}
+  footer .note{font-size:13px;color:var(--text-muted);opacity:0.7;margin-top:24px;}
+
+  /* CASE STUDIES */
+  .case-note{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--text-muted);margin:-18px 0 28px;}
+  .case{
+    border:1px solid var(--line);border-radius:3px;margin-bottom:22px;
+    background:var(--surface);overflow:hidden;
+  }
+  .case-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 26px;flex-wrap:wrap;gap:10px;
+    border-bottom:1px solid var(--line);
+  }
+  .case-title{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;}
+  .case-sub{font-size:14px;color:var(--text-muted);}
+  .case-tag{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    background:var(--surface-2);color:var(--accent-2);
+    padding:4px 10px;border-radius:2px;
+  }
+  .case-body{display:grid;grid-template-columns:1fr 1fr;gap:32px;padding:24px 26px;}
+  @media (max-width:760px){.case-body{grid-template-columns:1fr;gap:20px;}}
+  .case-block + .case-block{margin-top:18px;}
+  .case-label{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent-2);
+    text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;
+  }
+  .case-block p{font-size:15px;color:var(--text-muted);}
+  .case-block strong{color:var(--text);font-weight:500;}
+  .case-results{
+    border-top:1px solid var(--line);
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:1px;background:var(--line);
+  }
+  .case-metric{background:var(--surface-2);padding:20px 24px;}
+  .case-metric .num{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;color:var(--accent);margin-bottom:4px;}
+  .case-metric .lbl{font-size:13.5px;color:var(--text-muted);}
+  .case-foot{padding:16px 26px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .case-foot .case-label{margin:0 8px 0 0;}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">FETISOVA</div>
+    <ul class="nav-links">
+      <li><a href="#profile">Profile</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#cases">Cases</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#ai">AI &amp; Automation</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Senior Product Manager · B2B SaaS · Munich</span>
+    <h1>Iryna Fetisova builds the <span>parts of the product<br>people never notice</span> — until they work.</h1>
+    <p class="hero-sub">5+ years owning backend-heavy, compliance-adjacent user journeys — onboarding, KYC, payments — end to end, from discovery to the metric that proves it worked.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="mailto:inspire.breathe.live@gmail.com">Email me</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/feti-co8a" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+
+    <div class="funnel-block">
+      <div class="funnel-label">// the funnel is the job — a real shape of the work at Space307</div>
+      <div class="funnel-stage"><span class="name">Onboarding</span><span class="metric">+21% conversion</span></div>
+      <div class="funnel-stage"><span class="name">Identity verification (KYC)</span><span class="metric">+21% conversion</span></div>
+      <div class="funnel-stage"><span class="name">Conversion to paying user</span><span class="metric">5.7% → 5.9%</span></div>
+      <div class="funnel-stage"><span class="name">30-day retention</span><span class="metric">5% → 7%</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="profile">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">01 — Profile</div>
+      <h2>End-to-end ownership, proven in numbers</h2>
+    </div>
+    <p class="profile-text reveal">Senior Product Manager with <strong>5+ years in B2B SaaS</strong>, specializing in complex, backend-heavy user journeys and experimentation-driven development. Comfortable with high technical complexity, API-driven architecture, and cross-functional teams spanning Engineering, AML, Legal, and Marketing. Currently based in <strong>Munich, Germany</strong>, deepening AI product skills and German language, and targeting local product roles.</p>
+  </div>
+</section>
+
+<section id="impact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">02 — Impact</div>
+      <h2>What moved, and by how much</h2>
+    </div>
+    <div class="impact-grid reveal">
+      <div class="impact-card"><div class="impact-num">+21%</div><div class="impact-label">Onboarding conversion, via structured A/B testing and funnel optimisation</div></div>
+      <div class="impact-card"><div class="impact-num">+21%</div><div class="impact-label">KYC conversion, from a behavioural-drop-off redesign of identity verification</div></div>
+      <div class="impact-card"><div class="impact-num">−19%</div><div class="impact-label">Support ticket volume, by removing recurring UX confusion in critical flows</div></div>
+      <div class="impact-card"><div class="impact-num">+20%</div><div class="impact-label">Delivery efficiency across 10+ initiatives, via backlog and prioritisation frameworks</div></div>
+      <div class="impact-card"><div class="impact-num">5.7→5.9%</div><div class="impact-label">Payment conversion, from a simplified single-page checkout</div></div>
+      <div class="impact-card"><div class="impact-num">−35%</div><div class="impact-label">Onboarding time, earlier in career, by improving product education and user flows</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">03 — Case studies</div>
+      <h2>Two strategy cases, from problem to go/no-go</h2>
+    </div>
+    <p class="case-note reveal">// concept cases: figures below are targets and forecasts, not shipped results</p>
+
+    <article class="case reveal">
+      <div class="case-head">
+        <div><div class="case-title">Churn prevention flow</div><div class="case-sub">B2B SaaS · privacy &amp; consent management</div></div>
+        <span class="case-tag">Case 01 · Retention</span>
+      </div>
+      <div class="case-body">
+        <div>
+          <div class="case-block"><div class="case-label">Goal</div><p>Reduce revenue churn at the cancellation step and win back users who are still open to staying.</p></div>
+          <div class="case-block"><div class="case-label">Context</div><p>About <strong>€500K of revenue per month</strong> was lost to churn. One generic cancellation flow offered every user the same thing, regardless of reason or actual product usage.</p></div>
+        </div>
+        <div>
+          <div class="case-block"><div class="case-label">Role</div><p>Strategy, flow design, segmentation logic, metrics and experiment design.</p></div>
+          <div class="case-block"><div class="case-label">What was done</div><p>Designed a <strong>4-step flow</strong>: behavioural scoring → reason survey → offer matched to reason × usage segment (usage-based plan, discount, free plan, pause, data export) → graceful exit with follow-ups. Rule-based first, then a <strong>Multi-Armed Bandit</strong> once each segment has enough data.</p></div>
+        </div>
+      </div>
+      <div class="case-results">
+        <div class="case-metric"><div class="num">15%</div><div class="lbl">target save rate</div></div>
+        <div class="case-metric"><div class="num">+€40–50K</div><div class="lbl">net impact per month (€480–600K a year)</div></div>
+        <div class="case-metric"><div class="num">+20%</div><div class="lbl">target CLV uplift</div></div>
+        <div class="case-metric"><div class="num">CSAT &gt; 4.0</div><div class="lbl">guardrail, complaints &lt; 1%</div></div>
+      </div>
+      <div class="case-foot">
+        <span class="case-label">Tools</span>
+        <span class="chip">CJM</span><span class="chip">Behavioural segmentation</span><span class="chip">Multi-Armed Bandit</span><span class="chip">ROMI model</span>
+      </div>
+    </article>
+
+    <article class="case reveal">
+      <div class="case-head">
+        <div><div class="case-title">Monetization strategy</div><div class="case-sub">Browser-games platform · subscription &amp; in-game economy</div></div>
+        <span class="case-tag">Case 02 · Monetization</span>
+      </div>
+      <div class="case-body">
+        <div>
+          <div class="case-block"><div class="case-label">Goal</div><p>Reduce dependence on ad revenue and build predictable recurring revenue without losing developer trust.</p></div>
+          <div class="case-block"><div class="case-label">Context</div><p>A global platform earned <strong>~90% of revenue from ads</strong>: volatile CPMs, heavy ad load hurting first sessions, and developers distrusting revenue attribution.</p></div>
+        </div>
+        <div>
+          <div class="case-block"><div class="case-label">Role</div><p>Product strategy, monetization model, MVP scoping, roadmap.</p></div>
+          <div class="case-block"><div class="case-label">What was done</div><p>Built a <strong>hypothesis-driven roadmap with Go/No-Go gates</strong>: ad-free subscription MVP in 2 months (ad-removal layer, no developer work), a two-region pilot with a price A/B test, then a coin wallet with a 70/30 IAP split, then Premium+ or a seasonal pass. Legal and developer revenue-share covered.</p></div>
+        </div>
+      </div>
+      <div class="case-results">
+        <div class="case-metric"><div class="num">≥ 0.8%</div><div class="lbl">CTA → subscription conversion</div></div>
+        <div class="case-metric"><div class="num">≥ 60%</div><div class="lbl">subscribers active on day 7</div></div>
+        <div class="case-metric"><div class="num">≥ 95%</div><div class="lbl">of top-100 games ad-free for subscribers</div></div>
+        <div class="case-metric"><div class="num">2 months</div><div class="lbl">to MVP, with 5–7 engineers</div></div>
+      </div>
+      <div class="case-foot">
+        <span class="case-label">Tools</span>
+        <span class="chip">Pricing A/B test</span><span class="chip">LTV vs ad-revenue model</span><span class="chip">Go/No-Go gates</span><span class="chip">Roadmap</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">04 — Experience</div>
+      <h2>A career, read like a release log</h2>
+    </div>
+
+    <div class="release reveal">
+      <div class="release-head">
+        <div><div class="release-role">Senior Product Manager</div><div class="release-org">Space307 · Cyprus, remote</div></div>
+        <span class="release-tag">2021.10 – 2025.10</span>
+      </div>
+      <div class="release-body">
+        <ul>
+          <li><strong>Owned full product domains</strong> — onboarding, KYC, payments, lifecycle retention — end to end from discovery to post-launch optimisation.</li>
+          <li>Designed experimentation loops using <strong>A/B testing and behavioural analytics</strong> (funnel, cohort, retention) to continuously validate hypotheses.</li>
+          <li>Identified root causes of churn growth through mixed-method research and shipped fixes that <strong>stabilised retention</strong>.</li>
+          <li>Worked closely with engineering on <strong>API behaviour, system constraints, and scalable backend architecture</strong> decisions.</li>
+          <li>Collaborated across Marketing, AML, Legal, and Support — translating domain constraints into product decisions.</li>
+          <li>Systematically integrated LLMs into research synthesis, documentation, and PRD writing — <strong>cutting time spent on routine docs</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="release minor reveal">
+      <div class="release-head">
+        <div><div class="release-role">Customer Success Manager</div><div class="release-org">Space307 · Cyprus</div></div>
+        <span class="release-tag">2020.11 – 2021.10</span>
+      </div>
+      <div class="release-body">
+        <ul>
+          <li>Reduced onboarding time <strong>by 35%</strong> by improving product education and user flows.</li>
+          <li>Identified product gaps directly from customer interaction and feedback loops, feeding them back into the roadmap.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="release minor reveal">
+      <div class="release-head">
+        <div><div class="release-role">Community Management Team Lead</div><div class="release-org">Dataduck · Cyprus</div></div>
+        <span class="release-tag">2016.09 – 2020.10</span>
+      </div>
+      <div class="release-body">
+        <ul>
+          <li>Led distributed operations across APAC, LATAM, and EMEA.</li>
+          <li>Built the feedback loop between users and product teams that later shaped her product-research habits.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="release minor reveal">
+      <div class="release-head">
+        <div><div class="release-role">Customer Support Specialist</div><div class="release-org">Markets Partners · Russia</div></div>
+        <span class="release-tag">2015.10 – 2016.09</span>
+      </div>
+      <div class="release-body">
+        <ul>
+          <li>Structured multi-channel support and translated recurring issues into insight for product and engineering.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ai">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">05 — AI &amp; Automation</div>
+      <h2>Not just talking about AI — shipping with it</h2>
+    </div>
+    <div class="ai-grid reveal">
+      <ul class="ai-list">
+        <li><strong>Shipped production Telegram bots</strong>End-to-end in Python: architecture, development, and deployment on Render.</li>
+        <li><strong>4+ years of hands-on LLM usage in product work</strong>Daily use of ChatGPT, Cursor, and LLM workflows for research synthesis, documentation, and ideation at Space307.</li>
+        <li><strong>Evaluates AI trade-offs like an engineer</strong>Cost, latency, and reliability, weighed for practical product decisions rather than novelty.</li>
+        <li><strong>Formal grounding</strong>Completed an AI for PMs Workshop (2025) and a Product-Led certification (Pendo, SQL — Mode Analytics).</li>
+      </ul>
+      <div class="terminal">
+        <div><span class="comment">// currently building toward</span></div>
+        <div><span class="k">$</span> relocate --to Munich,DE</div>
+        <div><span class="k">$</span> learn german --level A2 --target B1</div>
+        <div><span class="k">$</span> ship --telegram-bots 2 --env render</div>
+        <div><span class="k">$</span> solve --product-and-analytics-tasks --daily</div>
+        <div><span class="k">$</span> learn --new-skills --continuously</div>
+        <div><span class="k">$</span> join --product-communities --track trends</div>
+        <div style="margin-top:14px;color:var(--text-muted)">// status: looking for a new career opportunity in Germany</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">06 — Skills</div>
+      <h2>The toolkit behind the numbers</h2>
+    </div>
+    <div class="skill-groups reveal">
+      <div class="skill-group">
+        <h3>Product Strategy</h3>
+        <div class="chip-row">
+          <span class="chip">End-to-end ownership</span><span class="chip">0→1 &amp; scaling</span>
+          <span class="chip">Hypothesis-driven</span><span class="chip">KPI &amp; OKR definition</span>
+          <span class="chip">Prioritisation under uncertainty</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Data &amp; Experimentation</h3>
+        <div class="chip-row">
+          <span class="chip">A/B testing</span><span class="chip">Funnel &amp; cohort analysis</span>
+          <span class="chip">SQL</span><span class="chip">Amplitude · Hotjar · Qlik</span>
+          <span class="chip">ARPU / ARPPU / LTV / churn</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Technical Collaboration</h3>
+        <div class="chip-row">
+          <span class="chip">API-driven architecture</span><span class="chip">Backend-heavy systems</span>
+          <span class="chip">Postman</span><span class="chip">Python (scripting &amp; bots)</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>AI-Native Product</h3>
+        <div class="chip-row">
+          <span class="chip">LLM feature design</span><span class="chip">Workflow automation</span>
+          <span class="chip">Cursor · ChatGPT · Claude</span><span class="chip">Agent-style logic</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Methodologies</h3>
+        <div class="chip-row">
+          <span class="chip">Agile / Scrum / Kanban</span><span class="chip">Dual-track discovery</span>
+          <span class="chip">RICE · ICE · MoSCoW</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Tools</h3>
+        <div class="chip-row">
+          <span class="chip">Jira</span><span class="chip">Confluence</span><span class="chip">Figma</span>
+          <span class="chip">Miro</span><span class="chip">Notion</span><span class="chip">Asana</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="background">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-tag">07 — Background</div>
+      <h2>Education, languages, credentials</h2>
+    </div>
+    <div class="bg-grid reveal">
+      <div class="bg-col">
+        <h3>Education</h3>
+        <p><strong>Bachelor of Physics</strong><br>Donetsk National University, 2014</p>
+      </div>
+      <div class="bg-col">
+        <h3>Languages</h3>
+        <p>English — fluent (C1/C2)</p>
+        <p>Russian, Ukrainian — native</p>
+        <p>German — A2, studying toward B1
+          <span class="lang-bar"><span style="width:35%"></span></span>
+        </p>
+      </div>
+      <div class="bg-col">
+        <h3>Courses &amp; Certifications</h3>
+        <ul>
+          <li><strong>Data-Driven Product Management Simulator</strong> — GoPractice</li>
+          <li><strong>Product-Led</strong> — Pendo</li>
+          <li><strong>OKRs for Product Teams</strong> — What Matters</li>
+          <li><strong>AI for PMs Workshop</strong> — 2025</li>
+          <li><strong>SQL</strong> — Mode Analytics, 2025</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="display">Let's talk about what you're building.</div>
+    <div class="contact-row">
+      <a href="mailto:inspire.breathe.live@gmail.com">inspire.breathe.live@gmail.com</a>
+      <span>+49 160 405 83 47</span>
+      <a href="https://linkedin.com/in/feti-co8a" target="_blank" rel="noopener">linkedin.com/in/feti-co8a</a>
+    </div>
+    <div class="note">Munich, Germany</div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
